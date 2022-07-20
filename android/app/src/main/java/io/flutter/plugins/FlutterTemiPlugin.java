@@ -15,7 +15,7 @@ public class FlutterTemiPlugin extends FlutterActivity {
         new MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), CHANNEL)
                 .setMethodCallHandler(
                         (call, result) -> {
-                            if(!call.arguments.toString().equals("")) {
+                            if(!call.method.equals("")) {
                                 // System.out.println("Call: " + call.arguments.toString() + " , Method: " + call.method);
                                 // robot.goTo("Entry");
                                 if (call.method.equals("temi_goto")) {
