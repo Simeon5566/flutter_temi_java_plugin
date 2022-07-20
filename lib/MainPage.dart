@@ -32,7 +32,7 @@ class _MainPage extends State<MainPage> {
         body: Center(
             child: TextButton(
                 onPressed: () {
-                  FlutterTemi.temiGoTo("Entry");
+                  FlutterTemi.temiSpeak("Hallo Member");
                 },
                 child: const Text("TemiGoTo"))));
   }

@@ -15,9 +15,20 @@ public class FlutterTemiPlugin extends FlutterActivity {
         new MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), CHANNEL)
                 .setMethodCallHandler(
                         (call, result) -> {
-                            // This method is invoked on the main thread.
-                            System.out.println(CHANNEL.toString());
-                            robot.goTo("Eingang");
+                            if(!call.arguments.toString().equals("")) {
+                                // System.out.println("Call: " + call.arguments.toString() + " , Method: " + call.method);
+                                // robot.goTo("Entry");
+                                if (call.method.equals("temi_goto")) {
+                                    robot.goTo(call.arguments().toString());
+                                }
+                                if (call.method.equals("temi_stop_movement")) {
+                                    robot.stopMovement();
+                                }
+                                if(call.method.equals("temi_speak")) {
+                                    TtsRequest ttsRequest = TtsRequest.create(call.arguments().toString(), true);
+                                    robot.speak(ttsRequest);
+                                }
+                            }
                         }
                 );
     }
